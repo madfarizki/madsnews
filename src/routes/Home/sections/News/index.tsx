@@ -1,10 +1,26 @@
 import Card from "@/components/Card";
-import { Button, Layout, Row } from "antd";
+import { Button, Col, Layout, Pagination, Row, Skeleton } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
+import { useFetchAllNews } from "@/utils/api/useConfig";
+import { useMemo, useState } from "react";
 
 const { Content } = Layout;
 
 function News() {
+  const [page, setPage] = useState(1);
+
+  const { data, isFetching } = useFetchAllNews({
+    q: "indonesia",
+    pageSize: 12,
+    page: page,
+  });
+
+  const news = useMemo(() => data?.data?.articles, [data]);
+
+  const onChange = (value: number) => {
+    setPage(value);
+  };
+
   return (
     <Content className="my-10">
       <Row justify="space-between">
@@ -16,9 +32,32 @@ function News() {
           <ArrowRightOutlined />
         </Button>
       </Row>
-      <Row gutter={[46, 26]} className="mt-8">
-        <Card />
-      </Row>
+      {isFetching ? (
+        <Row gutter={[46, 26]} className="mt-8">
+          {Array.from({ length: 12 }).map((_, idx) => (
+            <Col span={6} key={idx}>
+              <Skeleton.Image active className="mb-4" />
+              <Skeleton active />
+            </Col>
+          ))}
+        </Row>
+      ) : (
+        <>
+          <Row gutter={[46, 26]} className="mt-8">
+            {news?.map((item, idx) => (
+              <Card item={item} key={idx} />
+            ))}
+          </Row>
+          <div className="w-full flex justify-center mt-8">
+            <Pagination
+              defaultCurrent={page}
+              total={data?.data?.totalResults}
+              onChange={onChange}
+              showSizeChanger={false}
+            />
+          </div>
+        </>
+      )}
     </Content>
   );
 }

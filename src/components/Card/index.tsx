@@ -1,23 +1,39 @@
+import { Article } from "@/utils/fetcher/news";
+import { formatDate } from "@/utils/formatDate";
+import { getPlaceholderImage } from "@/utils/getPlaceholderImage";
+import { truncateText } from "@/utils/truncateText";
 import { Card as CardComponent, Col } from "antd";
 
 const { Meta } = CardComponent;
 
-function Card() {
+type Props = Article;
+
+function Card({ item }: { item: Props }) {
+  const { title, description, urlToImage, source, publishedAt } = item;
+
+  const { name } = source;
+
+  const shortDesc = truncateText(description ?? "", 150);
+  const shortTitle = truncateText(title ?? "", 35);
+
   return (
     <Col span={6}>
       <CardComponent
         hoverable
-        style={{ width: 300 }}
+        style={{ width: 300, height: 420 }}
         cover={
           <img
             alt="example"
-            src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            src={urlToImage ?? getPlaceholderImage()}
+            className="w-auto h-[200px] object-cover"
           />
         }>
-        <div className="text-sm text-gray-600 mb-2">CNN • 12 May 2024</div>
+        <div className="text-sm text-gray-600 mb-2">
+          {name} • {formatDate(publishedAt)}
+        </div>
         <Meta
-          title="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur asperiores tempore quaerat."
-          description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit ut, a, error facere, quos eligendi culpa soluta harum hic exercitationem nam porro."
+          title={<h1 className="font-bold text-2xl text-wrap">{shortTitle}</h1>}
+          description={shortDesc}
         />
       </CardComponent>
     </Col>
