@@ -7,9 +7,9 @@ const { Content } = Layout;
 
 function Highlight() {
   const { data, isFetching } = useFetchAllHighlightNews({
-    q: "us",
+    q: "ai",
     pageSize: 3,
-    page: 3,
+    page: 2,
   });
 
   const news = useMemo(() => data?.data?.articles, [data]);
