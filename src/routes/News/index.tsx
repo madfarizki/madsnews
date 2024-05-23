@@ -37,9 +37,11 @@ function News() {
           ) : (
             <>
               <Row gutter={[46, 26]} className="mt-8">
-                {news?.map((item, idx) => (
-                  <Card item={item} key={idx} />
-                ))}
+                {news ? (
+                  news?.map((item, idx) => <Card item={item} key={idx} />)
+                ) : (
+                  <div className="text-center w-full text-xl font-bold">Sorry, no data found!</div>
+                )}
               </Row>
               <div className="w-full flex justify-center mt-8">
                 <Pagination
