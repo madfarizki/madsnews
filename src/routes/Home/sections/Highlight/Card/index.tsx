@@ -8,9 +8,14 @@ import { truncateText } from "@/utils/truncateText";
 type Props = Article;
 
 function Card({ item }: { item: Props }) {
-  const { title, description, urlToImage, source, publishedAt } = item;
+  const { title, description, urlToImage, source, publishedAt, url } = item;
 
   const { name } = source;
+
+  const handleItemClick = () => {
+    window.open(url, "_blank");
+  };
+
   return (
     <div>
       <Flex className="justify-center items-center rounded-xl flex-col md:flex-row" gap={60}>
@@ -32,7 +37,8 @@ function Card({ item }: { item: Props }) {
             icon={<ArrowRightOutlined />}
             iconPosition="end"
             size="large"
-            className="bg-primary mt-4">
+            className="bg-primary mt-4"
+            onClick={handleItemClick}>
             Read More
           </Button>
         </div>

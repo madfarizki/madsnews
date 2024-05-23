@@ -9,15 +9,19 @@ const { Meta } = CardComponent;
 type Props = Article;
 
 function Card({ item }: { item: Props }) {
-  const { title, description, urlToImage, source, publishedAt } = item;
+  const { title, description, urlToImage, source, publishedAt, url } = item;
 
   const { name } = source;
 
   const shortDesc = truncateText(description ?? "", 150);
   const shortTitle = truncateText(title ?? "", 35);
 
+  const handleItemClick = () => {
+    window.open(url, "_blank");
+  };
+
   return (
-    <Col span={6}>
+    <Col span={6} onClick={handleItemClick}>
       <CardComponent
         hoverable
         style={{ width: 300, height: 420 }}
