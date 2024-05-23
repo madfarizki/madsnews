@@ -12,14 +12,8 @@ import { useHistory } from "react-router-dom";
 function Header() {
   const [visible, setVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [dark, setDark] = useState(false);
 
   const history = useHistory();
-
-  const darkModeHandler = () => {
-    setDark(!dark);
-    document.body.classList.toggle("dark");
-  };
 
   const showDrawer = () => {
     setVisible(true);

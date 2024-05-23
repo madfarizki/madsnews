@@ -5,6 +5,6 @@ export function formatDate(publishedAt: string): string {
     day: "numeric",
     month: "long",
     year: "numeric",
-  };
+  } as const;
   return date.toLocaleDateString("id-ID", options);
 }
