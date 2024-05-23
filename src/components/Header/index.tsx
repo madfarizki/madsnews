@@ -7,11 +7,14 @@ import {
   InstagramOutlined,
   MenuOutlined,
 } from "@ant-design/icons";
+import { useHistory } from "react-router-dom";
 
 function Header() {
   const [visible, setVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [dark, setDark] = useState(false);
+
+  const history = useHistory();
 
   const darkModeHandler = () => {
     setDark(!dark);
@@ -40,11 +43,13 @@ function Header() {
   const items = [
     {
       label: "Home",
-      key: "home",
+      key: "/",
+      path: "/",
     },
     {
-      label: "Articles",
-      key: "articles",
+      label: "News",
+      key: "/news",
+      path: "/news",
     },
   ];
 
@@ -58,11 +63,15 @@ function Header() {
         <>
           <Menu
             mode="horizontal"
-            defaultSelectedKeys={["home"]}
+            selectedKeys={[history.location.pathname]}
             theme="light"
-            className="bg-transparent flex justify-center items-center w-full"
-            items={items}
-          />
+            className="bg-transparent flex justify-center items-center w-full">
+            {items.map((item) => (
+              <Menu.Item key={item.key} onClick={() => history.push(item.path)}>
+                {item.label}
+              </Menu.Item>
+            ))}
+          </Menu>
           <div className="flex space-x-4">
             <FacebookOutlined className="text-dark text-2xl" />
             <TwitterOutlined className="text-dark text-2xl" />
@@ -78,7 +87,13 @@ function Header() {
             className="bg-blue-700 border-none"
           />
           <Drawer title="Menu" placement="right" closable={true} onClose={onClose} open={visible}>
-            <Menu mode="vertical" defaultSelectedKeys={["home"]} items={items} />
+            <Menu mode="vertical" selectedKeys={["home"]}>
+              {items.map((item) => (
+                <Menu.Item key={item.key} onClick={() => history.push(item.path)}>
+                  {item.label}
+                </Menu.Item>
+              ))}
+            </Menu>
           </Drawer>
         </>
       )}
