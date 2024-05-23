@@ -1,5 +1,5 @@
 import { Layout } from "antd";
-import { Header } from "@/components/index";
+import { Footer, Header } from "@/components/index";
 import { Hero, Highlight, News } from "./sections";
 
 function Home() {
@@ -11,6 +11,7 @@ function Home() {
         <Highlight />
         <News />
       </div>
+      <Footer />
     </Layout>
   );
 }
