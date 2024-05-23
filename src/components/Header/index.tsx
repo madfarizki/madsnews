@@ -55,7 +55,9 @@ function Header() {
 
   return (
     <Navbar className="w-full bg-transparent px-10 md:px-32 flex justify-between items-center">
-      <h2 className="text-dark text-2xl font-bold w-40 ">
+      <h2
+        className="text-dark text-3xl font-bold w-40 cursor-pointer"
+        onClick={() => history.push("/")}>
         Mads<span className="text-primary font-bold">News</span>
       </h2>
 
@@ -87,7 +89,7 @@ function Header() {
             className="bg-blue-700 border-none"
           />
           <Drawer title="Menu" placement="right" closable={true} onClose={onClose} open={visible}>
-            <Menu mode="vertical" selectedKeys={["home"]}>
+            <Menu mode="vertical" selectedKeys={[history.location.pathname]}>
               {items.map((item) => (
                 <Menu.Item key={item.key} onClick={() => history.push(item.path)}>
                   {item.label}

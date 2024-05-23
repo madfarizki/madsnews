@@ -6,7 +6,11 @@ import Card from "./Card";
 const { Content } = Layout;
 
 function Highlight() {
-  const { data, isFetching } = useFetchAllHighlightNews({ q: "us", pageSize: 3, page: 2 });
+  const { data, isFetching } = useFetchAllHighlightNews({
+    q: "us",
+    pageSize: 3,
+    page: 3,
+  });
 
   const news = useMemo(() => data?.data?.articles, [data]);
 

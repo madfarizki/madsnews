@@ -21,9 +21,10 @@ function Card({ item }: { item: Props }) {
   };
 
   return (
-    <Col span={6} onClick={handleItemClick}>
+    <Col xs={24} sm={12} md={8} lg={6} onClick={handleItemClick}>
       <CardComponent
         hoverable
+        className="mx-auto"
         style={{ width: 300, height: 420 }}
         cover={
           <img

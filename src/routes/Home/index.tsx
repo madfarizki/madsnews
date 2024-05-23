@@ -6,7 +6,7 @@ function Home() {
   return (
     <Layouts>
       <Layout className="bg-white">
-        <div className="w-full flex flex-col justify-center align-middle max-w-[1240px] mx-auto">
+        <div className="w-full flex flex-col justify-center align-middle max-w-[1240px] mx-auto max-sm:px-6">
           <Hero />
           <Highlight />
           <News />
