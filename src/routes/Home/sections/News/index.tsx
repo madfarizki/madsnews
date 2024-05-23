@@ -8,10 +8,11 @@ const { Content } = Layout;
 
 function News() {
   const [page, setPage] = useState(1);
+  const pageSize = 12;
 
   const { data, isFetching } = useFetchAllNews({
     q: "indonesia",
-    pageSize: 12,
+    pageSize: pageSize,
     page: page,
   });
 
@@ -52,6 +53,7 @@ function News() {
             <Pagination
               defaultCurrent={page}
               total={data?.data?.totalResults}
+              pageSize={pageSize}
               onChange={onChange}
               showSizeChanger={false}
             />
