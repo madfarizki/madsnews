@@ -19,3 +19,11 @@ body {
   font-weight: normal;
   font-family: "Lato", sans-serif;
 }
+
+.ant-skeleton {
+  width: 100% !important;
+}
+
+.ant-skeleton-image {
+  width: 100% !important;
+}

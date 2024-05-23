@@ -1,4 +1,4 @@
-import { API_NEWS } from "@/consts/api";
+import { API_HIGHLIGHT, API_NEWS } from "@/consts/api";
 
 import axios, { AxiosInstance } from "axios";
 
@@ -28,5 +28,10 @@ const axiosInstance: AxiosInstance = axios.create({
 
 export const fetchAllNews = (params: object) =>
   axiosInstance.get<NewsResponse>(API_NEWS, {
+    params,
+  });
+
+export const fetchHighlightNews = (params: object) =>
+  axiosInstance.get<NewsResponse>(API_HIGHLIGHT, {
     params,
   });

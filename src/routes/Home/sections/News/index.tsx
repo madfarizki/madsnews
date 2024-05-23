@@ -1,7 +1,7 @@
 import Card from "@/components/Card";
 import { Button, Col, Layout, Pagination, Row, Skeleton } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
-import { useFetchAllNews } from "@/utils/api/useConfig";
+import { useFetchAllNews } from "@/utils/api/useNews";
 import { useMemo, useState } from "react";
 
 const { Content } = Layout;
@@ -36,7 +36,7 @@ function News() {
         <Row gutter={[46, 26]} className="mt-8">
           {Array.from({ length: 12 }).map((_, idx) => (
             <Col span={6} key={idx}>
-              <Skeleton.Image active className="mb-4" />
+              <Skeleton.Image active className="mb-4" style={{ height: "200px" }} />
               <Skeleton active />
             </Col>
           ))}
